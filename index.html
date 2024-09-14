@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kirjautuminen</title>
+        <meta charset="UFT-8">
+    </head>
+    <body>
+        <h1>Kirjaudu</h1>
+        <br><br>
+        <p>Syötä salasana:</p>
+        <form id="syotaSalasana" onSubmit="testaaSalasana(); return false;">
+            <input id="salasana" type="password" placeholder="Syötä salasana">
+            <input type="submit" vaule="Vahvista"/>
+        </form>
+        <p id="vaarin" style="display: none"><em>Väärä salasana!</em></p>
+        <script>
+            function testaaSalasana() {
+                var salasanaa = document.getElementById("salasana").value;
+
+                if (salasanaa == "NappulaMestari123!") {
+                    avaaSivu();
+                }
+                else {
+                    var vaaraVastaus = document.getElementById("vaarin");
+                    vaaraVastaus.style.display = "block";
+                }
+            }
+
+            function avaaSivu() {
+                window.open("cookieclicker.html")
+            }
+        </script>
+    </body>
+</html>

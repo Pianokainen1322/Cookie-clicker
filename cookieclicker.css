@@ -1,0 +1,81 @@
+.keski {
+    text-align: center;
+}
+
+body {
+    background-color: blue;
+}
+
+.isoFont {
+    font-size: xx-large;
+}
+
+.keksi {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0px;
+    margin: 2px 4px;
+    border-radius: 100%;
+}
+
+.keksi:hover {
+    opacity: 0.95;
+}
+.keksi:active {
+    opacity: 0.9;
+}
+
+.takaisinPaasivuun {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    background-color: lightgreen;
+    border-color: black;
+    border-radius: 2px;
+}
+.takaisinPaasivuun:hover {
+    background-color: darkgreen;
+}
+.takaisinPaasivuun:active {
+    color: white;
+    background-color: black;
+}
+
+.paivitus {
+    position: absolute;
+    top: 25%;
+    left: 10;
+    cursor: pointer;
+}
+.autoclickerupdate {
+    position: absolute;
+    top: 35%;
+    left: 10;
+    cursor: pointer;
+}
+.autoclicker_on_off {
+    position: absolute;
+    top: 40%;
+    left: 10;
+    cursor: pointer;
+}
+
+.kerroin {
+    position: absolute;
+    top: 0;
+    left: 95%;
+}
+
+.autoclicker {
+    position: absolute;
+    top: 2%;
+    left: 95%;
+}
+
+.speedButton {
+    position: absolute;
+    top: 45%;
+    left: 10;
+    cursor: pointer;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UFT-8">
+        <title>Cookie clicker</title>
+        <link rel="stylesheet" type="text/css" href="peli_V2.css">
+    </head>
+    <body>
+        <button id="paivitus" class="paivitus" onclick="kerroinF()">Päivitä kertoimesi 2X!<br>Hinta: 100</button>
+        <button class="autoclickerupdate" onclick="autoClickerUpdate()" id="autoClickerButton">Päivitä autoclicker 1/1000ms!<br>Hinta: 50</button>
+        <button class="autoclicker_on_off" onclick="autoOnOff()" id="OnOff">Autoclicker:<br>on</button>
+        <button class="speedButton" id="speedbuttonid" onclick="kasvataNopeutta()">Päivitä autoclickerin nopeutta nopeuteen 2X!<br>Hinta: 1000</button>
+        <div class="keski">
+            <h1 class="isoFont">Cookie clicker!</h1>
+            <p class="isoFont">Testaa kuinka monta kertaa jaksat klikata keksiä!</p>
+            <p id="pisteet" class="isoFont">0</p>
+            <p class="kerroin" id="kerroin">1X</p>
+            <p class="autoclicker" id="autoid">0/1000ms</p>
+            <button class="keksi" onclick="uudetPisteet()"><img src="coocie.png" alt="keksi"></button>
+        </div>
+    </body>
+    <script>
+        var autoclickerOnOff = true;
+
+        var pisteet = 0;
+
+        var kerroin = 1.0;
+
+        var hinta = 100;
+
+        var autoClicker = 0;
+
+        var autoClickerHinta = 50;
+
+        var speed = 1000;
+
+        var speedHinta = 1000;
+
+        var speedkerroin = 1;
+
+        var speedupkerrat = 0;
+
+        function kasvataNopeutta() {
+            if (pisteet >= speedHinta && speedupkerrat < 9) {
+                pisteet -= speedHinta
+                speed = speed/2
+                speedkerroin = speedkerroin * 2
+                speedHinta += 1000
+                speedupkerrat += 1
+                document.getElementById("speedbuttonid").innerHTML = "Päivitä autoclickerin nopeutta nopeuteen " + (speedkerroin*2) + "X!<br>Hinta: " + speedHinta
+                document.getElementById("autoid").innerHTML = autoClicker + "/" + Math.round(speed) + "ms"
+                vaihdaPisteet()
+                automaattinenklikkaus = setInterval(autoClickerF, speed);
+            }
+            else if (pisteet >= speedHinta && speedupkerrat === 9) {
+                pisteet -= speedHinta
+                speed = speed/2
+                speedkerroin = speedkerroin * 2
+                speedHinta += 1000
+                speedupkerrat += 1
+                document.getElementById("speedbuttonid").innerHTML = "Autoclickerin nopeus on maksimoitu!"
+                document.getElementById("autoid").innerHTML = autoClicker + "/" + Math.round(speed) + "ms"
+                vaihdaPisteet()
+                automaattinenklikkaus = setInterval(autoClickerF, speed);
+            }
+        }
+
+        function autoOnOff() {
+            if (autoclickerOnOff === true) {
+                autoclickerOnOff = false;
+                document.getElementById("OnOff").innerHTML = "Autoclicker:<br>off"
+            }
+            else {
+                autoclickerOnOff = true;
+                document.getElementById("OnOff").innerHTML = "Autoclicker:<br>on"
+            }
+        }
+        function uudetPisteet() {
+            pisteet += 1*kerroin;
+            vaihdaPisteet();
+        }
+
+        function vaihdaPisteet() {
+            document.getElementById("pisteet").innerHTML = pisteet;
+        }
+
+        function paasivulle() {
+            window.open("pelinpaasivu.html");
+        }
+        
+        function kerroinF() {
+            if (pisteet >= hinta) {
+                pisteet -= hinta;
+                kerroin = kerroin*2;
+                hinta = Math.round(hinta * 1.9);
+                document.getElementById("paivitus").innerHTML = "Päivitä kertoimesi " + kerroin * 2 + "X! <br> Hinta: " + hinta;
+                document.getElementById("kerroin").innerHTML = kerroin + "X";
+                vaihdaPisteet();
+            }    
+        }
+
+        function autoClickerUpdate() {
+            if (pisteet >= autoClickerHinta) {
+                pisteet -= autoClickerHinta;
+                if (autoClicker === 0) {
+                    autoClicker = 1;
+                }
+                else {
+                    autoClicker = Math.round(autoClicker*2);
+                }
+                autoClickerHinta = Math.round(autoClickerHinta*4);
+                document.getElementById("autoClickerButton").innerHTML = "Päivitä autoclicker " + (autoClicker*2) + "/" + speed +"ms!<br>Hinta: " + autoClickerHinta;
+                document.getElementById("autoid").innerHTML = autoClicker + "/" + Math.round(speed) + "ms";
+                vaihdaPisteet();
+            }
+        }
+        function autoClickerF() {
+            if (autoclickerOnOff === true) {
+                pisteet += autoClicker;
+                vaihdaPisteet();
+            }
+        }
+        var automaattinenklikkaus = setInterval(autoClickerF, speed);
+        automaattinenklikkaus;
+    </script>
+</html>
